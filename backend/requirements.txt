@@ -1,0 +1,6 @@
+pyramid==2.0
+cornice
+waitress
+transformers
+torch
+python-dotenv

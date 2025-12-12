@@ -1,0 +1,306 @@
+/* Reset Dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🎨 Variabel Warna Dasar (Light Mode BARU) */
+:root {
+  --color-primary: #0ea5e9; /* Sky Blue 500 - Aksen utama Light Mode */
+  --color-secondary: #0284c7; /* Sky Blue 600 */
+
+  --color-text-dark: #1f2937;
+  --color-text-medium: #6b7280;
+  --color-text-light: #9ca3af;
+
+  --color-bg-body: #f1f5f9; /* Light Grayish Blue - Latar Belakang */
+  --color-bg-card: #ffffff; /* Putih Bersih untuk Card */
+  --color-bg-faded: #f8fafc; /* Sangat Pudar */
+
+  --color-positive: #10b981;
+  --color-negative: #ef4444;
+  --color-error-bg: #fee2e2;
+  --color-error-text: #991b1b;
+  --color-border-light: #e2e8f0;
+}
+
+/* 🌑 Dark Mode Variables (Dipertahankan) */
+.dark {
+  --color-primary: #818cf8; /* Indigo/Ungu - Aksen utama Dark Mode */
+  --color-secondary: #6366f1;
+
+  --color-text-dark: #e6eef8;
+  --color-text-medium: #9ca3af;
+  --color-text-light: #6b7280;
+
+  --color-bg-body: #0b1220;
+  --color-bg-card: #0f172a;
+  --color-bg-faded: #111827;
+
+  --color-border-light: rgba(255, 255, 255, 0.08);
+  --color-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* <body> dan App Container */
+body {
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-bg-body);
+  min-height: 100vh;
+  color: var(--color-text-dark);
+  transition: background-color 0.4s ease;
+}
+
+.dark body {
+  background: #0b1220;
+}
+
+.app-container {
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+/* Minimalist Header (Hanya Navigasi) */
+.header {
+  background: var(--color-bg-card);
+  padding: 15px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Shadow lebih halus */
+  margin-bottom: 30px;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark .header {
+  background: #0f172a;
+  box-shadow: none;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header h1 {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* Main Content: Terpusat dan Bersih */
+.main-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Card Sections */
+.form-section,
+.result-section,
+.reviews-section {
+  background: var(--color-bg-card);
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Shadow yang lebih dalam dan keren */
+  border: 1px solid var(--color-border-light);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.dark .form-section,
+.dark .result-section,
+.dark .reviews-section {
+  background: var(--color-bg-card);
+  box-shadow: none;
+  border: 1px solid var(--color-border-light);
+}
+
+.form-section h2,
+.result-section h2,
+.reviews-section h2 {
+  color: var(--color-text-dark);
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-bottom: 2px solid var(--color-primary); /* Border tipis di light mode */
+  padding-bottom: 10px;
+}
+
+.dark .form-section h2,
+.dark .result-section h2,
+.dark .reviews-section h2 {
+  border-bottom-color: var(--color-primary);
+  color: var(--color-text-dark);
+}
+
+/* Form Elements */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--color-border-light);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--color-bg-faded); /* Latar belakang input sedikit gelap */
+  color: var(--color-text-dark);
+}
+
+.dark input[type="text"],
+.dark select,
+.dark textarea {
+  background: #071028;
+  border: 1px solid var(--color-border-light);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2); /* Ring focus yang lebih keren */
+}
+
+/* Button Styling (Menggunakan Aksen Primary) */
+button {
+  padding: 12px 25px;
+  margin-top: 5px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+}
+
+button:hover:not(:disabled) {
+  background: var(--color-secondary);
+  box-shadow: 0 6px 15px rgba(14, 165, 233, 0.4);
+  transform: translateY(-2px);
+}
+
+.dark button {
+  background: var(--color-primary);
+  box-shadow: 0 4px 10px rgba(129, 140, 248, 0.3);
+}
+.dark button:hover:not(:disabled) {
+  background: #6366f1;
+}
+
+/* Result Sections */
+.sentiment-box {
+  background: var(--color-bg-faded);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 5px solid var(--color-primary);
+}
+
+.dark .sentiment-box {
+  background: #111827;
+}
+
+.sentiment-display {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.emoji {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+.sentiment-label {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+.confidence {
+  color: var(--color-text-medium);
+  font-size: 1rem;
+}
+
+.key-points-box {
+  background: var(--color-bg-faded);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 5px solid var(--color-positive);
+}
+
+.dark .key-points-box {
+  background: #111827;
+}
+
+.review-text-box {
+  background: var(--color-bg-faded);
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 5px solid var(--color-secondary);
+}
+
+.dark .review-text-box {
+  background: #111827;
+}
+
+/* Reviews List */
+.review-card {
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  padding: 20px;
+  background: var(--color-bg-card);
+  transition: all 0.2s ease-in-out;
+}
+
+.review-card:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.dark .review-card {
+  background: #111827;
+  border-color: var(--color-border-light);
+}
+
+.dark .review-card:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-color: var(--color-primary);
+}
+
+/* Responsive (Dipertahankan) */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.3rem;
+  }
+  .form-section,
+  .result-section,
+  .reviews-section {
+    padding: 20px;
+  }
+  .form-section h2,
+  .result-section h2,
+  .reviews-section h2 {
+    font-size: 1.4rem;
+  }
+  .sentiment-display {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
