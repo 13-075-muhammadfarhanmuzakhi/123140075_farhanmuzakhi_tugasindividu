@@ -1,11 +1,10 @@
-/* Reset Dasar */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 🎨 Variabel Warna Dasar (Light Mode BARU) */
+/* 🎨 Variabel Warna Dasar (Light Mode BARU - Minimalis Sky Blue) */
 :root {
   --color-primary: #0ea5e9; /* Sky Blue 500 - Aksen utama Light Mode */
   --color-secondary: #0284c7; /* Sky Blue 600 */
@@ -25,7 +24,7 @@
   --color-border-light: #e2e8f0;
 }
 
-/* 🌑 Dark Mode Variables (Dipertahankan) */
+/* 🌑 Dark Mode Variables (Aksen Ungu/Indigo) */
 .dark {
   --color-primary: #818cf8; /* Indigo/Ungu - Aksen utama Dark Mode */
   --color-secondary: #6366f1;
@@ -49,11 +48,11 @@ body {
   background-color: var(--color-bg-body);
   min-height: 100vh;
   color: var(--color-text-dark);
-  transition: background-color 0.4s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .dark body {
-  background: #0b1220;
+  background-color: var(--color-bg-body);
 }
 
 .app-container {
@@ -61,17 +60,17 @@ body {
   padding-bottom: 40px;
 }
 
-/* Minimalist Header (Hanya Navigasi) */
+/* Minimalist Header */
 .header {
   background: var(--color-bg-card);
   padding: 15px 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Shadow lebih halus */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   margin-bottom: 30px;
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .dark .header {
-  background: #0f172a;
+  background: var(--color-bg-card);
   box-shadow: none;
   border-bottom: 1px solid var(--color-border-light);
 }
@@ -91,6 +90,10 @@ body {
   margin: 0;
 }
 
+.dark .header h1 {
+  color: var(--color-primary);
+}
+
 /* Main Content: Terpusat dan Bersih */
 .main-content {
   max-width: 900px;
@@ -106,7 +109,7 @@ body {
   border-radius: 12px;
   padding: 30px;
   margin-bottom: 25px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Shadow yang lebih dalam dan keren */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   border: 1px solid var(--color-border-light);
   transition: background 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
@@ -126,7 +129,7 @@ body {
   margin-bottom: 20px;
   font-size: 1.6rem;
   font-weight: 700;
-  border-bottom: 2px solid var(--color-primary); /* Border tipis di light mode */
+  border-bottom: 2px solid var(--color-primary);
   padding-bottom: 10px;
 }
 
@@ -138,12 +141,6 @@ body {
 }
 
 /* Form Elements */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
 input[type="text"],
 select,
 textarea {
@@ -152,7 +149,7 @@ textarea {
   border: 1px solid var(--color-border-light);
   border-radius: 8px;
   font-size: 1rem;
-  background: var(--color-bg-faded); /* Latar belakang input sedikit gelap */
+  background: var(--color-bg-faded);
   color: var(--color-text-dark);
 }
 
@@ -168,10 +165,15 @@ select:focus,
 textarea:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2); /* Ring focus yang lebih keren */
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.3);
 }
 
-/* Button Styling (Menggunakan Aksen Primary) */
+/* Button Styling */
 button {
   padding: 12px 25px;
   margin-top: 5px;
@@ -183,6 +185,7 @@ button {
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+  transition: all 0.3s ease;
 }
 
 button:hover:not(:disabled) {
@@ -212,47 +215,14 @@ button:hover:not(:disabled) {
   background: #111827;
 }
 
-.sentiment-display {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 10px;
+.sentiment-label.sentiment-positive {
+  color: var(--color-positive);
 }
-
-.emoji {
-  font-size: 2.5rem;
-  line-height: 1;
+.sentiment-label.sentiment-negative {
+  color: var(--color-negative);
 }
-.sentiment-label {
-  font-size: 1.4rem;
-  font-weight: 800;
-}
-.confidence {
+.sentiment-label.sentiment-neutral {
   color: var(--color-text-medium);
-  font-size: 1rem;
-}
-
-.key-points-box {
-  background: var(--color-bg-faded);
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  border-left: 5px solid var(--color-positive);
-}
-
-.dark .key-points-box {
-  background: #111827;
-}
-
-.review-text-box {
-  background: var(--color-bg-faded);
-  padding: 20px;
-  border-radius: 10px;
-  border-left: 5px solid var(--color-secondary);
-}
-
-.dark .review-text-box {
-  background: #111827;
 }
 
 /* Reviews List */
@@ -264,14 +234,14 @@ button:hover:not(:disabled) {
   transition: all 0.2s ease-in-out;
 }
 
-.review-card:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
-}
-
 .dark .review-card {
   background: #111827;
   border-color: var(--color-border-light);
+}
+
+.review-card:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 .dark .review-card:hover {
@@ -279,28 +249,25 @@ button:hover:not(:disabled) {
   border-color: var(--color-primary);
 }
 
-/* Responsive (Dipertahankan) */
-@media (max-width: 768px) {
-  .header h1 {
-    font-size: 1.3rem;
-  }
-  .form-section,
-  .result-section,
-  .reviews-section {
-    padding: 20px;
-  }
-  .form-section h2,
-  .result-section h2,
-  .reviews-section h2 {
-    font-size: 1.4rem;
-  }
-  .sentiment-display {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .review-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
+/* --- FOOTER STYLING --- */
+.footer {
+  width: 100%;
+  padding: 20px 0;
+  margin-top: 30px;
+  text-align: center;
+  border-top: 1px solid var(--color-border-light);
+  background: var(--color-bg-card);
+  transition: background 0.3s ease;
+}
+
+.dark .footer {
+  background: var(--color-bg-card);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--color-text-medium);
+  font-size: 0.9rem;
 }

@@ -46,7 +46,6 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (reviewText.trim().length < 10) {
       setError("Review harus minimal 10 karakter");
       return;
@@ -78,7 +77,6 @@ function App() {
     }
   };
 
-  // Helper function: Warna Sentimen (Digunakan untuk Inline Style di Result Box)
   const getSentimentColor = (sentiment) => {
     switch (sentiment) {
       case "positive":
@@ -90,7 +88,6 @@ function App() {
     }
   };
 
-  // Helper function: Emoji Sentimen
   const getSentimentEmoji = (sentiment) => {
     switch (sentiment) {
       case "positive":
@@ -102,7 +99,6 @@ function App() {
     }
   };
 
-  // Helper function: Toggle Dark Mode
   const toggleDarkMode = () => {
     const next = !darkMode;
     setDarkMode(next);
@@ -114,7 +110,6 @@ function App() {
     document.body.classList.toggle("dark", next);
   };
 
-  // Helper function: Sentiment Class untuk CSS Styling
   const getSentimentClass = (sentiment) => {
     switch (sentiment) {
       case "positive":
@@ -124,6 +119,20 @@ function App() {
       default:
         return "sentiment-neutral";
     }
+  };
+
+  // Fungsi baru untuk memformat tanggal dan waktu
+  const formatDateTime = (dateString) => {
+    const date = new Date(dateString);
+    if (isNaN(date)) return "Tanggal tidak valid";
+    return date.toLocaleDateString("id-ID", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false, // Menggunakan format 24 jam
+    });
   };
 
   return (
@@ -249,7 +258,6 @@ function App() {
               {reviews.map((review) => (
                 <div key={review.id} className="review-card">
                   <div className="review-header">
-                    {/* Menggunakan class untuk styling warna sentimen */}
                     <span
                       className={`review-sentiment ${getSentimentClass(
                         review.sentiment
@@ -260,12 +268,9 @@ function App() {
                       </span>
                       {review.sentiment.toUpperCase()}
                     </span>
+                    {/* MENAMPILKAN TANGGAL DAN JAM */}
                     <span className="review-date">
-                      {new Date(review.created_at).toLocaleDateString("id-ID", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
+                      {formatDateTime(review.created_at)}
                     </span>
                   </div>
                   {review.product_name && (
@@ -282,6 +287,13 @@ function App() {
           )}
         </section>
       </main>
+
+      {/* FOOTER BARU */}
+      <footer className="footer">
+        <div className="footer-inner">
+          &copy; {new Date().getFullYear()} - Muhammad Farhan Muzakhi
+        </div>
+      </footer>
     </div>
   );
 }
